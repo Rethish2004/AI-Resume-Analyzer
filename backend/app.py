@@ -50,16 +50,29 @@ app.config["SECRET_KEY"] = os.getenv(
     "SECRET_KEY", "local-development-only-change-this-secret-before-deployment"
 )
 
+CORS(frontend_origins = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("FRONTEND_URL", "").split(",")
+    if origin.strip()
+]
+
+frontend_origins.extend([
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+])
+
 CORS(
     app,
-    resources={r"/*": {"origins": [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:5174",
-        "http://127.0.0.1:5174",
-    ]}},
+    resources={
+        r"/*": {
+            "origins": frontend_origins
+        }
+    },
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "OPTIONS"],
+)
 )
 
 serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"], salt="resume-analyzer-auth")
