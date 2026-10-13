@@ -1,0 +1,934 @@
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #020617;
+  color: #e2e8f0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   APP
+============================================================ */
+
+.app {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.15),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(124, 58, 237, 0.12),
+      transparent 30%
+    ),
+    #020617;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+  border-bottom: 1px solid #1e293b;
+  background: rgba(2, 6, 23, 0.92);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 22px 24px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.header-content p {
+  margin: 6px 0 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 35px 24px 60px;
+}
+
+
+/* ============================================================
+   INPUT GRID
+============================================================ */
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.card,
+.result-card,
+.main-score-card,
+.role-card,
+.score-card,
+.history-section {
+  border: 1px solid #1e293b;
+  background: rgba(15, 23, 42, 0.88);
+  border-radius: 18px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.card {
+  padding: 26px;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.description {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   UPLOAD BOX
+============================================================ */
+
+.upload-box {
+  min-height: 220px;
+  margin-top: 20px;
+  padding: 30px;
+  border: 2px dashed #334155;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  font-weight: 700;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.upload-hint {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   JOB INPUT
+============================================================ */
+
+.job-input {
+  width: 100%;
+  min-height: 220px;
+  margin-top: 20px;
+  padding: 16px;
+  resize: vertical;
+
+  border: 1px solid #334155;
+  border-radius: 14px;
+
+  background: #020617;
+  color: #e2e8f0;
+
+  outline: none;
+  line-height: 1.6;
+}
+
+.job-input:focus {
+  border-color: #3b82f6;
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.job-input::placeholder {
+  color: #64748b;
+}
+
+
+/* ============================================================
+   ERROR
+============================================================ */
+
+.error-box {
+  margin: 20px 0;
+  padding: 15px 18px;
+
+  border: 1px solid #7f1d1d;
+  border-radius: 12px;
+
+  background: rgba(127, 29, 29, 0.2);
+  color: #fca5a5;
+}
+
+
+/* ============================================================
+   ANALYZE BUTTON
+============================================================ */
+
+.analyze-button {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #7c3aed
+    );
+
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 25px rgba(37, 99, 235, 0.22);
+
+  transition: 0.25s ease;
+}
+
+.analyze-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(37, 99, 235, 0.3);
+}
+
+.analyze-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   RESULTS
+============================================================ */
+
+.results {
+  margin-top: 38px;
+}
+
+.results-heading {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+
+/* ============================================================
+   MAIN SCORE
+============================================================ */
+
+.main-score-card {
+  padding: 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  margin-bottom: 20px;
+}
+
+.score-circle {
+  --score: 0deg;
+
+  width: 170px;
+  height: 170px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      #3b82f6 0deg,
+      #7c3aed var(--score),
+      #1e293b var(--score),
+      #1e293b 360deg
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.score-circle::before {
+  content: "";
+  position: absolute;
+
+  width: 132px;
+  height: 132px;
+
+  border-radius: 50%;
+
+  background: #0f172a;
+}
+
+.score-inner {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-inner strong {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.score-inner span {
+  margin-top: 5px;
+  color: #94a3b8;
+}
+
+.score-info h2 {
+  margin: 0 0 10px;
+}
+
+.score-info p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.score-status {
+  display: inline-block;
+  margin-bottom: 6px !important;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa !important;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   ROLE CARD
+============================================================ */
+
+.role-card {
+  padding: 22px;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.role-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+
+  background: rgba(124, 58, 237, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+}
+
+.role-content {
+  flex: 1;
+}
+
+.role-label {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.role-score {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.score-container {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.score-container strong {
+  color: #60a5fa;
+}
+
+
+/* ============================================================
+   SCORE CARDS
+============================================================ */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.score-card {
+  padding: 22px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-card-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #1e293b;
+
+  font-size: 22px;
+}
+
+.score-card p {
+  margin: 0 0 5px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.large-score {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   RESULT CARDS
+============================================================ */
+
+.result-card {
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 20px;
+
+  font-size: 19px;
+}
+
+
+/* ============================================================
+   BADGES
+============================================================ */
+
+.count-badge {
+  padding: 4px 9px;
+  border-radius: 999px;
+
+  background: #1e293b;
+
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.matched-count {
+  background: rgba(34, 197, 94, 0.14);
+  color: #86efac;
+}
+
+.missing-count {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+}
+
+.required-count {
+  background: rgba(59, 130, 246, 0.14);
+  color: #93c5fd;
+}
+
+
+/* ============================================================
+   SKILLS
+============================================================ */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  border: 1px solid #334155;
+  background: #0f172a;
+}
+
+.resume-skill {
+  color: #93c5fd;
+  border-color: #1d4ed8;
+  background: rgba(29, 78, 216, 0.1);
+}
+
+.matched {
+  color: #86efac;
+  border-color: #166534;
+  background: rgba(22, 101, 52, 0.13);
+}
+
+.missing {
+  color: #fca5a5;
+  border-color: #991b1b;
+  background: rgba(153, 27, 27, 0.12);
+}
+
+.required {
+  color: #fde68a;
+  border-color: #92400e;
+  background: rgba(146, 64, 14, 0.12);
+}
+
+
+/* ============================================================
+   SKILL ANALYSIS
+============================================================ */
+
+.skill-analysis {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-row {
+  padding: 14px;
+
+  background: #020617;
+
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+}
+
+.skill-row-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 9px;
+}
+
+.skill-name {
+  font-weight: 600;
+}
+
+.skill-status {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.matched-status {
+  color: #86efac;
+}
+
+.missing-status {
+  color: #fca5a5;
+}
+
+.skill-progress {
+  height: 8px;
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #1e293b;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.4s ease;
+}
+
+.matched-fill {
+  background: #22c55e;
+}
+
+.missing-fill {
+  background: #ef4444;
+}
+
+
+/* ============================================================
+   SUMMARY ITEMS
+============================================================ */
+
+.summary-grid .summary-item {
+  padding: 18px;
+
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+
+  background: #020617;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.summary-item strong {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.summary-item span {
+  font-weight: 700;
+  word-break: break-word;
+}
+
+
+/* ============================================================
+   ATS SECTION
+============================================================ */
+
+.result-card h4 {
+  margin-top: 25px;
+  margin-bottom: 12px;
+  color: #cbd5e1;
+}
+
+
+/* ============================================================
+   SUGGESTIONS
+============================================================ */
+
+.suggestions-card {
+  margin-top: 20px;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  padding: 16px;
+
+  border: 1px solid #334155;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.06),
+      rgba(124, 58, 237, 0.06)
+    );
+}
+
+.suggestion-number {
+  min-width: 34px;
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #7c3aed
+    );
+
+  color: white;
+  font-weight: 800;
+}
+
+.suggestion-text {
+  flex: 1;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+
+/* ============================================================
+   EMPTY
+============================================================ */
+
+.empty-text {
+  color: #64748b;
+}
+
+
+/* ============================================================
+   HISTORY
+============================================================ */
+
+.history-section {
+  margin-top: 35px;
+  padding: 24px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.history-header h2 {
+  margin: 0;
+}
+
+.refresh-button {
+  padding: 9px 14px;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+.refresh-button:hover:not(:disabled) {
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+.refresh-button:disabled {
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   TABLE
+============================================================ */
+
+.history-table-wrapper {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 14px 12px;
+
+  border-bottom: 1px solid #1e293b;
+
+  text-align: left;
+}
+
+.history-table th {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.history-table td {
+  font-size: 14px;
+}
+
+.history-score {
+  font-weight: 800;
+  color: #60a5fa;
+}
+
+.history-empty {
+  color: #64748b;
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE
+============================================================ */
+
+@media (max-width: 900px) {
+
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-score-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .role-card {
+    flex-wrap: wrap;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 22px 14px 40px;
+  }
+
+  .header-content {
+    padding: 18px 14px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .card,
+  .result-card,
+  .history-section,
+  .main-score-card {
+    padding: 18px;
+  }
+
+  .score-circle {
+    width: 145px;
+    height: 145px;
+  }
+
+  .score-circle::before {
+    width: 112px;
+    height: 112px;
+  }
+
+  .score-inner strong {
+    font-size: 38px;
+  }
+
+  .role-card {
+    align-items: flex-start;
+  }
+
+  .score-container {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .history-table {
+    min-width: 650px;
+  }
+}
+/* ============================================================
+   DOWNLOAD REPORT
+============================================================ */
+
+.download-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 15px 24px;
+
+  border: 1px solid #334155;
+  border-radius: 14px;
+
+  background: #0f172a;
+  color: #e2e8f0;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+.download-button:hover:not(:disabled) {
+  border-color: #3b82f6;
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.download-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

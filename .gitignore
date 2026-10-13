@@ -1,0 +1,33 @@
+﻿# Python virtual environments
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+
+# Python temporary files
+__pycache__/
+*.py[cod]
+*.log
+
+# Private settings and secrets
+.env
+.env.*
+!.env.example
+
+# Local databases and uploaded resumes
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/uploaded_resume.*
+backend/sample_resume.pdf
+backend/sample_resume.docx
+
+# React dependencies and build output
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Local generated reports
+backend/resume-analysis-report.pdf
+backend/reports/
