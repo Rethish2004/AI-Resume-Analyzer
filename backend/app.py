@@ -50,7 +50,10 @@ app.config["SECRET_KEY"] = os.getenv(
     "SECRET_KEY", "local-development-only-change-this-secret-before-deployment"
 )
 
-CORS(frontend_origins = [
+# Allow the deployed frontend URL(s) and local development URLs.
+# Set FRONTEND_URL on Render to the public frontend origin, for example:
+# https://your-frontend-name.onrender.com
+frontend_origins = [
     origin.strip().rstrip("/")
     for origin in os.getenv("FRONTEND_URL", "").split(",")
     if origin.strip()
@@ -65,14 +68,9 @@ frontend_origins.extend([
 
 CORS(
     app,
-    resources={
-        r"/*": {
-            "origins": frontend_origins
-        }
-    },
+    resources={r"/*": {"origins": frontend_origins}},
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "OPTIONS"],
-)
 )
 
 serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"], salt="resume-analyzer-auth")
