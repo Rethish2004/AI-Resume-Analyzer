@@ -24,7 +24,7 @@ An AI Resume Analyzer web application that analyzes resumes against job descript
 
 ## Live Demo
 
-Add your deployed frontend URL here.
+https://ai-resume-analyzer-1-bvnc.onrender.com
 
 ## Backend Health Check
 
